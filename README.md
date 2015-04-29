@@ -13,7 +13,8 @@ With a light and sleek design, Rulo will let you enjoy saving those grocery doll
 * [Sophie Gershon](https://github.com/sophgersh) 
 * [Deanna Taylor](https://github.com/deannataylor) 
 * [Alex Zilbersher](https://github.com/zilby) 
-##The Team in retirement
+
+The Team in retirement
 * [Benedict Bolton](https://github.com/benedict-bolton) 
 
 
