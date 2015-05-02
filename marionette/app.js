@@ -47,6 +47,29 @@ App.addEvent = Marionette.CompositeView.extend({
             }
         }
     }
+});
+
+// how would this work for personal info
+App.userNameView = Marrionette.ItemView.extend({
+    template : "#username",
+    modelEvent : {
+	"change" : function() { this.render(); }
+    }
+})
+
+App.changeName = Marionette.CompositeView.extend({
+    childView : App.userNameView,
+    childViewContainer: "ol",
+    template : "#personalInfo",
+    events : {
+        "click #change" : function() {
+            var n = $("#name").val();
+            if (n.length != 0){
+                this.collection.add(new User({u:n})); //not a collection
+                $("#name").val("");
+            }
+        }
+    }
 });  
 
 
@@ -93,6 +116,9 @@ var Events = Backbone.Collection.extend({
 
 var e1 = new Event({e:"event"});
 var es = new Events([e1]);
+
+var User = Backbone.Model.extend();
+var u1 = new User({u:"username"});
 
 /*
 var Word = Backbone.Model.extend();
