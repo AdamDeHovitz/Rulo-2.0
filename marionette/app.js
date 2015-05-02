@@ -20,6 +20,36 @@ App.on("start", function(){
     console.log("starting");
     })
 
+
+App.eventView = Marrionette.ItemView.extend({
+    template : "#event",
+    tagName : "li",
+    modelEvent : {
+	"change" : function() { this.render(); }
+    }
+})
+
+App.eventCollection = Marrionette.CollectionView.extend({
+    childView : App.eventView
+})
+    
+//modeled after below
+App.addEvent = Marionette.CompositeView.extend({
+    childView : App.eventView,
+    childViewContainer: "ol",
+    template : "#addEvent",
+    events : {
+        "click #add" : function() {
+            var n = $("#newEvent").val();
+            if (n.length != 0){
+                this.collection.add(new Event({e:n}));
+                $("#newEvent").val("");
+            }
+        }
+    }
+});  
+
+
 // Have yet to touch any of this
 App.on("start",function(){
        console.log("Starty doo bop");       
@@ -56,13 +86,22 @@ App.AddWord = Marionette.CompositeView.extend({
     }
 });
 
+var Event = Backbone.Model.extend();
+var Events = Backbone.Collection.extend({
+    model:Event
+});
+
+var e1 = new Event({e:"event"});
+var es = new Events([e1]);
+
+/*
 var Word = Backbone.Model.extend();
 var StoryView = Backbone.Collection.extend({
     model:Word
-});
+}); 
 
 var w1 = new Word({w:"hi"});
 var w2 = new Word({w:"Establish"});
-var c = new StoryView([w1]);
+var c = new StoryView([w1]); */
 
 App.start();
