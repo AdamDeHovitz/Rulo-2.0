@@ -65,13 +65,12 @@ App.changeName = Marionette.CompositeView.extend({
         "click #change" : function() {
             var n = $("#name").val();
             if (n.length != 0){
-                this.collection.add(new User({u:n})); //not a collection
+                this.collection.add(new User({u:n})); //not a collection?
                 $("#name").val("");
             }
         }
     }
 });  
-
 
 // Have yet to touch any of this
 App.on("start",function(){
