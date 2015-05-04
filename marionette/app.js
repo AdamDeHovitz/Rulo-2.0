@@ -78,13 +78,24 @@ App.changeName = Marionette.CompositeView.extend({
     childViewContainer: "ol",
     template : "#personalInfo",
     events : {
-        "click #changeUsername" : function() {
+        "click #change" : function() {
             var n = $("#name").val();
             if (n.length != 0){
                 this.collection.add(new User({u:n})); //not a collection?
                 $("#name").val("");
             }
+	    var m = $("#pword").val();
+            if (m.length != 0){
+                this.collection.add(new Password({p:m})); //not a collection?
+                $("#pword").val("");
+            }
+	    var l = $("#email_address").val();
+            if (l.length != 0){
+                this.collection.add(new Email({email:l})); //not a collection?
+                $("#email_address").val("");
+            }
         }
+	/*
 	 "click #changePassword" : function() {
             var n = $("#pword").val();
             if (n.length != 0){
@@ -98,7 +109,7 @@ App.changeName = Marionette.CompositeView.extend({
                 this.collection.add(new Email({email:n})); //not a collection?
                 $("#email_address").val("");
             }
-        }
+        } */
     }
 });  
 
