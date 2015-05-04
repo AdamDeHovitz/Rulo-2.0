@@ -20,7 +20,6 @@ App.on("start", function(){
     console.log("starting");
     })
 
-
 App.eventView = Marrionette.ItemView.extend({
     template : "#event",
     tagName : "li",
@@ -57,16 +56,47 @@ App.userNameView = Marrionette.ItemView.extend({
     }
 })
 
+App.passWordView = Marrionette.ItemView.extend({
+    template : "#password",
+    modelEvent : {
+	"change" : function() { this.render(); }
+    }
+})
+
+App.emailView = Marrionette.ItemView.extend({
+    template : "#email",
+    modelEvent : {
+	"change" : function() { this.render(); }
+    }
+})
+
+// unsure if we need a compite view or not
+// we can add events, as above, but how do you change username, etc
+
 App.changeName = Marionette.CompositeView.extend({
-    childView : App.userNameView,
+    childView : App.userNameView, // unsure
     childViewContainer: "ol",
     template : "#personalInfo",
     events : {
-        "click #change" : function() {
+        "click #changeUsername" : function() {
             var n = $("#name").val();
             if (n.length != 0){
                 this.collection.add(new User({u:n})); //not a collection?
                 $("#name").val("");
+            }
+        }
+	 "click #changePassword" : function() {
+            var n = $("#pword").val();
+            if (n.length != 0){
+                this.collection.add(new Password({p:n})); //not a collection?
+                $("#pword").val("");
+            }
+         }
+	 "click #changeEmail" : function() {
+            var n = $("#email_address").val();
+            if (n.length != 0){
+                this.collection.add(new Email({email:n})); //not a collection?
+                $("#email_address").val("");
             }
         }
     }
@@ -117,6 +147,12 @@ var e1 = new Event({e:"event"});
 var es = new Events([e1]);
 
 var User = Backbone.Model.extend();
+var u1 = new User({u:"username"});
+
+var Password = Backbone.Model.extend();
+var p1 = new User({u:"username"});
+
+var Email = Backbone.Model.extend();
 var u1 = new User({u:"username"});
 
 /*
