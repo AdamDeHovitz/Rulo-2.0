@@ -73,7 +73,7 @@ App.emailView = Marrionette.ItemView.extend({
 // unsure if we need a compite view or not
 // we can add events, as above, but how do you change username, etc
 
-App.changeName = Marionette.CompositeView.extend({
+App.changeSettingsView = Marionette.CompositeView.extend({
     childView : App.userNameView, // unsure
     childViewContainer: "ol",
     template : "#personalInfo",
@@ -94,6 +94,11 @@ App.changeName = Marionette.CompositeView.extend({
                 this.collection.add(new Email({email:l})); //not a collection?
                 $("#email_address").val("");
             }
+	    var s = $("#picture").val();
+            if (s.length != 0){
+                this.collection.add(new Picture({pic:s})); //not a collection?
+                $("#picture").val("");
+            }
         }
 	/*
 	 "click #changePassword" : function() {
@@ -111,7 +116,26 @@ App.changeName = Marionette.CompositeView.extend({
             }
         } */
     }
-});  
+});
+
+App.rateUserView = Marionette.CompositeView.extend({
+    childView : App.userNameView, // unsure
+    childViewContainer: "ol",
+    template : "#otherUser",
+    events : {
+        "click #submit_comment" : function() {
+            var n = $("#stars").val();
+            if (n.length != 0){
+                this.collection.add(new Stars({s:n})); //not a collection?
+                $("#stars").val("");
+            }
+	    var m = $("#comment").val();
+            if (m.length != 0){
+                this.collection.add(new Comment({c:m})); //not a collection?
+                $("#comment").val("");
+            }
+        }}
+});
 
 // Have yet to touch any of this
 App.on("start",function(){
@@ -161,11 +185,20 @@ var User = Backbone.Model.extend();
 var u1 = new User({u:"username"});
 
 var Password = Backbone.Model.extend();
-var p1 = new User({u:"username"});
+var p1 = new User({p:"password"});
+
+var Picture = Backbone.Model.extend();
+var pic = new User({pic:"upload a thing!"});
 
 var Email = Backbone.Model.extend();
-var u1 = new User({u:"username"});
+var u1 = new User({email:"blah@blah"});
 
+var Comment = Backbone.Model.extend(); // Given that a user gets these, do we need this
+var c1 = new User({c:"comment"});
+
+var Stars = Backbone.Model.extend(); // Given that a user gets these, do we need this
+var s1 = new Stars({s:"number"});`
+	
 /*
 var Word = Backbone.Model.extend();
 var StoryView = Backbone.Collection.extend({
