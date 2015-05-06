@@ -1,6 +1,6 @@
 
 var map;
-var geocoder;
+var geocoder = new google.maps.Geocoder();
 var defaultMarker = {
     animation: google.maps.Animation.DROP,
     draggable: true
@@ -15,22 +15,34 @@ var initialize = function(){
     map = new google.maps.Map(document.getElementById('map-canvas'),
 				  mapOptions);
 
-    /*currentLocation = loadLocation(setMarker(marker), function(error){	
-	switch(error.code) {
-	case error.PERMISSION_DENIED:
-	    console.log("User denied permission.");
-	    break;
-	case error.POSITION_UNAVAILABLE:
-	    console.log("Geolocation/GPS unavailable.");
-	    break;
-	case error.TIMEOUT:
-	    console.log("Geolocation request timed out.");
-	    break;
-	case error.UNKNOWN_ERROR:
-	    console.log("Something wack happened.");
-	    break;
-    	}*/
-    if (navigator.geolocation) {
+}
+
+var placeMarker = function(){    
+    var address = document.getElementById("address");
+    var a = address.value;
+    address.value = "";
+    geocoder.geocode( { 'address': a}, function(results, status) {
+	if (status == google.maps.GeocoderStatus.OK) {
+	    //for (var i = 0; i < results.length; i++){
+		var marker = new google.maps.Marker({
+		    map: map,
+		    position: results[0].geometry.location,
+		    animation: defaultMarker.animation,
+		    draggable: defaultMarker.draggable
+		});
+	    map.panTo(marker.getPosition());
+	    addPlace(marker.getPosition());
+	    //}
+
+	} else {
+	    alert('Geocode was not successful for the following reason: ' 
+		  + status);
+	}
+    });
+}
+
+var markCurrent = function(){
+    if ("geolocation" in navigator) {
 	browserSupportFlag = true;
 	navigator.geolocation.getCurrentPosition(function(position) {
 	    initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -41,6 +53,8 @@ var initialize = function(){
 		    animation: defaultMarker.animation,
 		    draggable: defaultMarker.draggable
 	    });
+	    console.log(marker.getPosition());
+	    addPlace(marker.getPosition());
 	}, function() {
 	    //handleNoGeolocation(browserSupportFlag);
 	    console.log("nope");
@@ -52,63 +66,32 @@ var initialize = function(){
 	//handleNoGeolocation(browserSupportFlag);
 	console.log("nope");
     }
+    
 
-
-/*var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    var location = new google.maps.LatLng(latitude, longitude);    
-    console.log(location);
-    */
-
-    /*var marker = new google.maps.Marker({
-	position: location,         
-	map: map,
-	title: 'Hello World!'
-    });*/
 }
 
-var placeMarker = function(){    
-    var address = document.getElementById("address");
-    var a = address.value;
-    address.value = "";
-    console.log(a);
-    geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': a}, function(results, status) {
+var addPlace = function(latlong){
+    geocoder.geocode({'location': latlong}, function(results,status){
 	if (status == google.maps.GeocoderStatus.OK) {
-	    //for (var i = 0; i < results.length; i++){
-		var marker = new google.maps.Marker({
-		    map: map,
-		    position: results[0].geometry.location,
-		    animation: defaultMarker.animation,
-		    draggable: defaultMarker.draggable
-		});
-	    map.panTo(marker.getPosition());
-	    //}
+	    var address = results[0].formatted_address;
 
+	    var li = document.createElement("li");
+	    var node = document.createTextNode(address);
+	    li.appendChild(node);
+
+	    var element = document.getElementById("list");
+	    element.appendChild(li);
+
+	    //var list = document.getElementById("list");
+	    /*var li = document.createElement("li");
+	    var node = document.createTextNode(address);
+	    list.appendChild(li.appendChild(node));*/
+	    //list.append("<li>"+address+"<li>");
 	} else {
-	    alert('Geocode was not successful for the following reason: ' 
-		  + status);
+	    console.log("no work");
 	}
     });
 }
-
-function loadLocation (callback, error){
-    latlng = {};
-
-    function getLocation(pos){
-	latlng["latitude"] = pos.coords.latitude;
-	latlng["longitude"] = pos.coords.longitude;
-	callback(latlng);
-    }
-
-    var load = function() {
-	if (navigator.geolocation) {
-	    console.log("Loading location now....");
-	    navigator.geolocation.getCurrentPosition(getLocation, error);
-	}
-    }();
-
-};
 
 
 //function
@@ -123,4 +106,5 @@ function loadLocation (callback, error){
 window.onload = loadScript;*/
 
 google.maps.event.addDomListener(window, 'load', initialize);
-document.getElementById("submitadd").addEventListener("click",placeMarker);
+document.getElementById("mark-address").addEventListener("click",placeMarker);
+document.getElementById("current").addEventListener("click",markCurrent);
