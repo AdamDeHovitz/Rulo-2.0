@@ -15,8 +15,20 @@
   <%- p %>
 </script>
 
+<script type="text/template" id="rating">
+  <%- r %>
+</script>
+
+<script type="text/template" id="comment">
+  <%- c %>
+</script>
+
 <script type="text/template" id="email">
   <%- email %>
+</script>
+
+<script type="text/template" id="pic">
+  <%- pic %>
 </script>
 
 <!-- addEvent -->
@@ -41,7 +53,22 @@
   
   <h3>Edit your email</h3>
   <textArea type="text" id="email_address"></textArea>
+
+  <h3> Upload new picture</h3>
+  <textArea type="text" id="picture"></textArea> <!-- need upload thing -->
+  
   <button class="pure-button pure-button-primary" id="change">Create</button>
+</script>
+
+
+<script type="text/template" id="otherUser">
+  <ol></ol>
+  <h3>Stars?</h3>
+  <textArea type="text" id="stars"></textArea> <!-- change to stars -->
+ 
+  <h3>Leave a comment</h3>
+  <textArea type="text" id="comment"></textArea>
+  <button class="pure-button pure-button-primary" id="submit_comment">Create</button>
 </script>
 
 <!-- old stuff -->
