@@ -39,6 +39,17 @@ App.addEvent = Marionette.CompositeView.extend({
     template : "#addEvent",
     events : {
         "click #add" : function() {
+	    var neweventdict = {}
+	    neweventdict.ename = $("#").val();
+	    neweventdict.numb = $("#");
+	    neweventdict.desc;
+	    neweventdict.total;
+	    neweventdict.price;
+	    neweventdict.lon;
+	    neweventdict.lat;
+	    neweventdict.location;
+	    neweventdict.address;
+	    
             var n = $("#newEvent").val();
             if (n.length != 0){
                 this.collection.add(new Event({e:n}));

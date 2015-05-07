@@ -203,7 +203,7 @@ def process():
         edict['desc'] = request.form["desc"]
         edict['total'] = request.form["total"]
         edict['price'] = request.form["price"]
-        edict['long'] = request.form["long"]
+        edict['long'] = request.form["long"] #MAKE ALL 'LON'
         edict['lat'] = request.form["lat"]
         print('looking for location')
         edict['location'] = request.form['loc']
