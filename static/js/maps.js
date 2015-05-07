@@ -26,27 +26,31 @@ var initialize = function(){
 }
 
 var placeMarker = function(){    
-    var address = document.getElementById("address");
-    var a = address.value;
-    address.value = "";
-    geocoder.geocode( { 'address': a}, function(results, status) {
-	if (status == google.maps.GeocoderStatus.OK) {
-	    //for (var i = 0; i < results.length; i++){
+    var place1 = document.getElementById("place1");
+    var a = place1.value;
+    if (a == ""){
+	console.log("put in an address"); //can you flash from javascript?
+    } else { 
+	place1.value = "";
+	geocoder.geocode( { 'address': a}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+		//for (var i = 0; i < results.length; i++){
 		var marker = new google.maps.Marker({
 		    map: map,
 		    position: results[0].geometry.location,
 		    animation: defaultMarker.animation,
 		    draggable: defaultMarker.draggable
 		});
-	    map.panTo(marker.getPosition());
-	    addPlace(marker.getPosition());
-	    //}
-
-	} else {
-	    alert('Geocode was not successful for the following reason: ' 
-		  + status);
-	}
-    });
+		map.panTo(marker.getPosition());
+		addPlace(marker.getPosition());
+		//}
+		
+	    } else {
+		alert('Geocode was not successful for the following reason: ' 
+		      + status);
+	    }
+	});
+    }
 }
 
 var markCurrent = function(){
@@ -116,13 +120,10 @@ var route = function(origin, destination, mode){
 		unitSystem: google.maps.UnitSystem.IMPERIAL,
 	    }, callback);
 	    // after successful call to API, calls function callback
-	    function callback(response, status) {
-		console.log("in callback");
+	    function callback(response, status) {		
 		var element = response.rows[0].elements[0];
-		this.distance = element.distance.text;
-		console.log(this.distance);
-		this.time = element.duration.text;
-		console.log("got distance and time");
+		this.distance = element.distance.text;		
+		this.time = element.duration.text;		
 	    } 
 	},
 	getDistance : function(){ return distance; },
