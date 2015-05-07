@@ -289,7 +289,7 @@ def user_page(uname = None):
         username = escape(session['username'])
         udict = util.getUser(username)
         pdict = util.getUser(uname)
-        pic = util.getPicture (udict['uname'])
+        pic = util.getPicture (uname)
 
     if request.method=="POST":
             print(request.form["rating"])
@@ -356,6 +356,9 @@ def newmsg(eventid = None):
 @app.route('/about')
 def about():
     udict = {'uname':False}
+    if 'username' in session:
+        username = escape(session['username'])
+        udict = util.getUser(username)
     return render_template('about.html', udict=udict) 
   
 
