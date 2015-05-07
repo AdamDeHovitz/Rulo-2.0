@@ -356,6 +356,9 @@ def newmsg(eventid = None):
 @app.route('/about')
 def about():
     udict = {'uname':False}
+    if 'username' in session:
+        username = escape(session['username'])
+        udict = util.getUser(username)
     return render_template('about.html', udict=udict) 
   
 
