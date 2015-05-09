@@ -4,6 +4,7 @@
 
 <!-- event template -->
 <script type="text/template" id="event">
+  <!-- this might need to be a diff type -->
   <%- e %>
 </script>
 
@@ -34,9 +35,22 @@
 <!-- addEvent -->
 <script type="text/template" id="addEvent">
     
-    <ol></ol>
+  <ol></ol>
+  <!-- change these from textarea to what they need to be -->
   <h3>Create an event </h3>
+  <h4>Name</h4>
   <textArea type="text" id="newEvent"></textArea>
+  <h4>Number of people needed</h4>
+  <textArea type="text" id="numb"></textArea>
+  <h4>Description of event</h4>
+  <textArea type="text" id="desc"></textArea>
+  <h4>Total price</h4>
+  <textArea type="text" id="total"></textArea>
+  <h4>Price per person</h4>
+  <textArea type="text" id="price"></textArea>
+  <!-- need to integrate maps for 
+       <textArea type="text" id="loc"></textArea>
+       -->
   <button class="pure-button pure-button-primary" id="add">Create</button>
 </script>
 

@@ -40,21 +40,29 @@ App.addEvent = Marionette.CompositeView.extend({
     events : {
         "click #add" : function() {
 	    var neweventdict = {}
-	    neweventdict.ename = $("#").val();
-	    neweventdict.numb = $("#");
-	    neweventdict.desc;
-	    neweventdict.total;
-	    neweventdict.price;
-	    neweventdict.lon;
+	    neweventdict.ename = $("#newEvent").val();
+	    neweventdict.numb = $("#numb").val();
+	    neweventdict.desc = $("desc").val();
+	    neweventdict.total = $("total").val();
+	    neweventdict.price = $("price").val();
+	    neweventdict.lon; // need to integrate maps for this
 	    neweventdict.lat;
 	    neweventdict.location;
 	    neweventdict.address;
-	    
+	    this.collection.add(new Event({e:neweventdict}));
+
+	    /* ??? */
             var n = $("#newEvent").val();
             if (n.length != 0){
                 this.collection.add(new Event({e:n}));
                 $("#newEvent").val("");
             }
+	    
+	    $("#newEvent").val("");
+	    $("#numb").val("");
+	    $("#desc").val("");
+	    $("#total").val("");
+	    $("#price").val("");
         }
     }
 });
@@ -90,6 +98,16 @@ App.changeSettingsView = Marionette.CompositeView.extend({
     template : "#personalInfo",
     events : {
         "click #change" : function() {
+
+	    var editPersonalInfoDict = {} //get the person's infodict
+	    editPersonalInfoDict.name = $("#name").val();
+	    editPersonalInfoDict.password = $("#pword").val();
+	    editPersonalInfoDict.email= $("email_address").val();
+	    editPersonalInfoDict.pic = $("picture").val(); // upload
+	    this.collection.add(new User({e:editPersonalInfoDict}));
+	    // needs to not be an add but a change.
+
+	    // other way, but this doesnt have a dictionary
             var n = $("#name").val();
             if (n.length != 0){
                 this.collection.add(new User({u:n})); //not a collection?
