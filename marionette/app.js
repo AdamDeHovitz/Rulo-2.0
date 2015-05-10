@@ -153,7 +153,14 @@ App.rateUserView = Marionette.CompositeView.extend({
     template : "#otherUser",
     events : {
         "click #submit_comment" : function() {
-            var n = $("#stars").val();
+	    var commentsDict = {}
+	    commentsDict.title = $("#title").val();
+	    commentsDict.stars = $("#stars").val();
+	    commentsDict.comment = $("#comment").val();
+	    this.collection.add(new Comment({e:commentsDict}));
+	    
+          /*
+	    var n = $("#stars").val();
             if (n.length != 0){
                 this.collection.add(new Stars({s:n})); //not a collection?
                 $("#stars").val("");
@@ -161,9 +168,9 @@ App.rateUserView = Marionette.CompositeView.extend({
 	    var m = $("#comment").val();
             if (m.length != 0){
                 this.collection.add(new Comment({c:m})); //not a collection?
-                $("#comment").val("");
-            }
-        }}
+                $("#comment").val(""); */
+        }
+    }
 });
 
 // Have yet to touch any of this

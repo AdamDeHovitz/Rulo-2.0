@@ -39,15 +39,15 @@
   <!-- change these from textarea to what they need to be -->
   <h3>Create an event </h3>
   <h4>Name</h4>
-  <input type="text" id="newEvent"></textArea>
+  <input type="text" id="newEvent"></input>
   <h4>Number of people needed</h4>
-  <input type="number" id="numb"></textArea>
+  <input type="number" id="numb"></input>
   <h4>Description of event</h4>
   <textArea type="text" id="desc"></textArea>
   <h4>Total price</h4>
-  <input type="number" id="total"></textArea>
+  <input type="number" id="total"></input>
   <h4>Price per person</h4>
-  <input type="number" id="price"></textArea>
+  <input type="number" id="price"></input>
   <!-- need to integrate maps for 
        <textArea type="text" id="loc"></textArea>
        -->
@@ -59,17 +59,17 @@
   <ol></ol>
   <h3>Edit your username</h3>
   <!-- how would we list the original username? -->
-  <input type="text" id="name"></textArea>
+  <input type="text" id="name"></input>
   
   <!-- hmmmmmmmmm -->
   <h3>Edit your password</h3>
-  <input type="password" id="pword"></textArea>
+  <input type="password" id="pword"></input>
   
   <h3>Edit your email</h3>
-  <input type="email" id="email_address"></textArea>
-
+  <input type="email" id="email_address"></input>
+  
   <h3> Upload new picture</h3>
-  <input type="text" id="picture"></textArea> <!-- need upload thing -->
+  <input type="file" id="picture"></input> <!-- need upload thing -->
   
   <button class="pure-button pure-button-primary" id="change">Create</button>
 </script>
@@ -77,10 +77,13 @@
 
 <script type="text/template" id="otherUser">
   <ol></ol>
-  <h3>Stars?</h3>
-  <textArea type="text" id="stars"></textArea> <!-- change to stars -->
- 
-  <h3>Leave a comment</h3>
+
+  <h3>Leave a review</h3>
+  <h4>Title</h4>
+  <input type="text" id="title"></input>
+  <h4>Stars?</h4>
+  <input type="number" id="stars"></input> <!-- change to stars -->
+  <h4>Leave a comment</h4>
   <textArea type="text" id="comment"></textArea>
   <button class="pure-button pure-button-primary" id="submit_comment">Create</button>
 </script>
