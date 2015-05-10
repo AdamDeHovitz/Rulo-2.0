@@ -67,6 +67,41 @@ App.addEvent = Marionette.CompositeView.extend({
     }
 });
 
+App.buttonsView = Marrionette.ItemView.extend({
+
+    // hmm
+
+});
+
+App.topBar = Marrionette.CompositeView.extend({
+    childView : App.buttonsView, // can you make the child view buttons?
+    childViewContainer: "ol",
+     events : {
+        "click #yourEvents" : function() {
+	    // load url or open the your events view
+	}
+	 "click #eventsButton" : function(){
+	     
+	 }
+	 "click #settings" : function(){
+	     
+	 }
+	 "click #logout" : function(){
+	     
+	 }
+     }
+});
+	 
+    
+
+// list of events... this might not need to be compositeView.
+App.eventView = Marionette.CompositeView.extend({
+    childView : App.eventView,
+    childViewContainer: "ol",
+    template : "#eventList"
+});
+    
+
 // how would this work for personal info
 App.userNameView = Marrionette.ItemView.extend({
     template : "#username",

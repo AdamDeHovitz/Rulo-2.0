@@ -32,6 +32,28 @@
   <%- pic %>
 </script>
 
+<!-- top bar menu, to be on when user is logged in -->
+<script type="text/template" id="topBar">
+  <ol></ol>
+  <button class="pure-button pure-button-primary" id="yourEvents">Your Events</button>
+  <button class="pure-button pure-button-primary" id="eventsButton">Events</button>
+  <button class="pure-button pure-button-primary" id="createButton">Create Events</button>
+  <button class="pure-button pure-button-primary" id="settings">Personal Settings</button>
+  <button class="pure-button pure-button-primary" id="logout">Lougout</button>
+</script> 
+
+<!-- top bar menu, to be on when user is NOT logged in -->
+<script type="text/template" id="topBarNotLogged">
+  <ol></ol>
+</script> 
+
+<!-- Event list -->
+<script type="text/template" id="eventList">
+  <ol>
+    <!-- event list dict needs to be in here -->
+  </ol>
+</script>
+
 <!-- addEvent -->
 <script type="text/template" id="addEvent">
     
