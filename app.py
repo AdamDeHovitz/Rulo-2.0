@@ -1,5 +1,5 @@
 from flask import flash, Flask, g, render_template, session, redirect, url_for, \
-     escape, request, send_from_directory
+     escape, request, send_from_directory, jsonify
 import util #util.py
 from functools import wraps
 import os
@@ -361,6 +361,22 @@ def about():
         udict = util.getUser(username)
     return render_template('about.html', udict=udict) 
   
+
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
+@app.route('/ajax')
+def ajax():
+    udict = {'uname':False}
+    if 'username' in session:
+        username = escape(session['username'])
+        udict = util.getUser(username)
+    return render_template('ajaxTest.html', udict=udict) 
+  
+
 
 if __name__ == '__main__':
     app.debug = True
