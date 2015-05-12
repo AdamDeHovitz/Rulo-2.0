@@ -9,13 +9,13 @@ Rulo is a unique buying and selling application that allows users to buy individ
 With a light and sleek design, Rulo will let you enjoy saving those grocery dollars.
 
 ##The Team
-* [Adam DeHovitz](https://github.com/adamdehovitz) 
-* [Sophie Gershon](https://github.com/sophgersh) 
-* [Deanna Taylor](https://github.com/deannataylor) 
+* [Adam DeHovitz](https://github.com/adamdehovitz) Back/Front-End Design, component interaction, and database usage
+* [Sophie Gershon](https://github.com/sophgersh) Database usage, events and user code, and python coding
+* [Deanna Taylor](https://github.com/deannataylor) Marionette usage, Javascript and HTML coding, styling, and GPA
 * [Alex Zilbersher](https://github.com/zilby) 
 
 The Team in retirement
-* [Benedict Bolton](https://github.com/benedict-bolton) 
+* [Benedict Bolton](https://github.com/benedict-bolton) CSS Styling, GPS javascript, Images, and component interaction
 
 
 ##The Application
