@@ -1,4 +1,4 @@
-$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
 $(function() {
     $('a#calculate').bind('click', function() {
 	$.getJSON($SCRIPT_ROOT + '/_add_numbers', {
