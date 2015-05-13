@@ -1,5 +1,15 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html> <head>
+
+<!--ADAM'S STUFF THAT IS NEEDED FOR PYTHON-JS-PYTHON COMMUNICATION !-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+
     <title>Rulo</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -25,10 +35,10 @@
 
     {% if username or udict['uname'] %}
     <li><a href="/about"><img src="../static/RuloPic.png" width="30" height="30"></a></li>
+    <li><a href="/events">All Events</a></li>
     <li><a href="/your_events">Your Events</a></li>
-    <li><a href="/events">Events</a></li>
-    <li><a href="/create_events">Create Events</a></li>
-    <li><a href="/personal">Personal Settings</a></li>
+    <li><a href="/create_events">New Event</a></li>
+    <li><a href="/personal">Personal</a></li>
     <li><a href="/logout" style="align:right">Logout</a></li>
      </div>
 
@@ -99,8 +109,14 @@
     <input id="TheDistance" name="dist" type="hidden" value="">
 
 
+<<<<<<< HEAD
     
     <script type="text/javascript" src="../static/js/maps.js"></script>
+=======
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY"></script>
+
+
+>>>>>>> 29afb95889d8fcc556199267bf9388214876831c
 
     {% endblock %}
 
