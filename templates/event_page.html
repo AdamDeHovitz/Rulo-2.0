@@ -7,7 +7,9 @@
     created {{event['datetime'].month}}/{{event['datetime'].day}} at {{event['datetime'].hour}}:{{event['datetime'].minute}}<br>
     <b>Host:</b> {{event['creator']}}
     <br><br>
-    <b> Location:</b> {{event['address']}}
+    <!-- <b> Location:</b> {{event['address']}} -->
+    <div>
+    <div id="map-canvas"></div>
     <input type=hidden id="latLong" value={{event['location']}}>
         <br><br>
         <div id="location" style="display: none;">{{event['address']}}</div>

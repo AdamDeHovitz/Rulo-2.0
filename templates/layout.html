@@ -10,9 +10,15 @@
     {% else %}
       <link href="../static/fonts/stranger.css" rel="stylesheet">
     {% endif %}
-    <style>
+    <style type="text/css">
+        html, body, 
+        #map-canvas { height: 400px; width: 500px; margin: 10px; padding: 0;}
       .flashes {color: red; text-indent: 50px}
     </style>
+    
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY">
+        </script>
   </head>
 
   <div id="topMenu" class="pure-menu pure-menu-open pure-menu-horizontal one-edge-shadow">
@@ -93,9 +99,8 @@
     <input id="TheDistance" name="dist" type="hidden" value="">
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY"></script>
-
-    <script src="../static/GPSEvent.js"></script>
+    
+    <script type="text/javascript" src="../static/js/maps.js"></script>
 
     {% endblock %}
 

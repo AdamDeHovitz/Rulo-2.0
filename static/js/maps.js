@@ -2,6 +2,8 @@ var map;
 var geocoder = new google.maps.Geocoder(); 
 // https://developers.google.com/maps/documentation/geocoding/
 
+var data = {};
+
 var defaultMarker = {
     animation: google.maps.Animation.DROP,
     draggable: true
@@ -22,8 +24,9 @@ var initialize = function(){
     };
     map = new google.maps.Map(document.getElementById('map-canvas'),
 				  mapOptions);
-
+    
 }
+
 
 var placeMarker = function(){    
     var place1 = document.getElementById("place1");
@@ -66,7 +69,7 @@ var markCurrent = function(){
 		draggable: defaultMarker.draggable,
 		icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 	    });
-	    console.log(marker.getPosition());
+	    //console.log(marker.getPosition());
 	    addPlace(marker.getPosition());
 	}, function() {
 	    //handleNoGeolocation(browserSupportFlag);
@@ -84,6 +87,7 @@ var markCurrent = function(){
 }
 
 var addPlace = function(latlong){
+    data.place = latlong;
     geocoder.geocode({'location': latlong}, function(results,status){
 	if (status == google.maps.GeocoderStatus.OK) {
 	    var address = results[0].formatted_address;
@@ -136,35 +140,32 @@ var r = route("275 W. 96th St. NY","345 Chambers St. NY","BICYCLING");
 r.calculate();
 
 
-var getDistance = function(origin, destination, mode){
-    //origin and destination can be any type of maps object thing
-    //mode can be: WALKING, DRIVING (default), BICYCLING
-    //google.maps.TravelMode.WALKING 
-    //var distance;
-    //var time;
-    service.getDistanceMatrix({
-	origins: [origin],
-	destinations: [destination],
-	travelMode: google.maps.TravelMode.DRIVING,
-	//transitOptions: TransitOptions,
-	unitSystem: google.maps.UnitSystem.IMPERIAL,
-    }, callback);
-    // after successful call to API
-    function callback(response, status) {
-	var element = response.rows[0].elements[0];
-        route.distance = element.distance.text;
-        route.time = element.duration.text;
-
-	//console.log("time: "+time);
-	//console.log("distance: "+distance);
-	
-	//return {"time": time, "distance":distance};
-    } 
-    
+var getRoute = function(){
+    var mode;
+    var radios = document.getElementsByName("mode");
+    for (var i = 0; i < radios.length; i++){
+	if (radios[i].checked){
+	    mode = radios[i].value
+	}
+    }
+    var p1 = document.getElementById("place1").value;
+    var p2 = document.getElementById("place2").value;
+    var r = route(p1, p2, mode);
+    r.calculate();
+    return r;
 }
+
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
 document.getElementById("mark-address").addEventListener("click",placeMarker);
 document.getElementById("current").addEventListener("click",markCurrent);
 
+
+/*
+IN MARIONETTE:
+
+
+
+
+*/
