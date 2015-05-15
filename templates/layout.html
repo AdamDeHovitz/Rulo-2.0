@@ -21,7 +21,7 @@
       <link href="../static/fonts/stranger.css" rel="stylesheet">
     {% endif %}
     <style type="text/css">
-        html, body, 
+    
         #map-canvas { height: 400px; width: 500px; margin: 10px; padding: 0;}
       .flashes {color: red; text-indent: 50px}
     </style>
@@ -36,7 +36,7 @@
     {% if username or udict['uname'] %}
     <li><a href="/about"><img src="../static/RuloPic.png" width="30" height="30"></a></li>
     <li><a href="/events">All Events</a></li>
-    <li><a href="/your_events">Your Events</a></li>
+    <li><a href="/your_events">My Events</a></li>
     <li><a href="/create_events">New Event</a></li>
     <li><a href="/personal">Personal</a></li>
     <li><a href="/logout" style="align:right">Logout</a></li>
@@ -73,7 +73,7 @@
 
     {% for notification in udict['notifications'] %}
 	{% if loop.index == 1 %}
-     Starting events
+     Starting event
 	{% endif %}
      <br>
      <form class="pure-form pure-form-aligned" method="POST" action={{"/confirm_notification/" ~ notification}}>

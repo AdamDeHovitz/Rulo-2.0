@@ -24,14 +24,6 @@ users = db.users
 events = db.events
 
 #----------------------PIC STUFF---------------------#
-
-"""def uploadPicture (picture):
-    print "in upload"
-    print picture
-    _id = fs.put(picture)
-    print "uploaded"
-    return _id """
-
 def uploadPicture (picture):
   try:
     filename = secure_filename(picture.filename)
@@ -47,31 +39,13 @@ def uploadPicture (picture):
     print "saved the pic"
   return filename
 
-
-"""def updatePicture (picture, user):
-    print "in update"
-    print type(picture)
-    _id = uploadPicture(picture)
-    users.update({"uname":user},{'$set':{'pic':_id}})
-    print users.find_one({'uname':user})['pic']
-    print "update complete"
-    return _id == users.find_one({'uname':user})['pic']"""
-
 def updatePicture (picture, user):
     print "in update"
-    #print type(picture)
     filename = uploadPicture(picture)
     users.update({"uname":user},{'$set':{'pic':filename}})
     print users.find_one({'uname':user})['pic']
     print "update complete"
     return filename == users.find_one({'uname':user})['pic']
-
-
-'''def getPicture (user):
-    p = users.find_one({"uname":user})
-    _id = p['pic']
-    picture = fs.get(_id)
-    return picture'''
 
 def getPicture(user):
   print platform.system()
@@ -157,7 +131,6 @@ def checkEmail(email):
 
 
 def addPerson(pdict):
-    #pdict['picture'] = file; should be sent from form
     # --> other stuff that needs to be initialized
     pdict['reviews'] = [] # 'user', 'rating', 'comment'
     pdict['hevents'] = [] #hosted events
@@ -312,7 +285,6 @@ def createEvent(edict):
     edict['started'] = False
     edict['datetime'] = datetime.today()
     e = events.insert(edict)
-    #print e
     return e #returns w/o objectid( )
 
 
