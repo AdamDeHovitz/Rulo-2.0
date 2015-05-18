@@ -38,7 +38,14 @@ $( 'height' ).value = dimensions.height;
 Event.observe( window, 'load', function() {
         new Cropper.Img(
             'testImage',
-            { onEndCrop: onEndCrop }
+            {
+                ratioDim: {
+                    x: 220,
+                    y: 220
+                },
+                displayOnInit: true,
+                onEndCrop: onEndCrop
+            }
         );
     } );
 </script>
