@@ -18,20 +18,23 @@
 <h1>Personal Information</h1>
 <br>
 <br>
-<!-- <img src="../static/profilePictures/ewokPing.jpg" height="50" width="50"> -->
-<!-- <img id= src="{{ profile }}" height = "75" width="75"> -->
 
-<img src="../static/profilePictures/ewokPing.jpg" alt="Test image" id="testImage" width="500" height="333" />
- 
-    <script type="text/javascript" language="javascript">
+ <script type="text/javascript" language="javascript">
 function onEndCrop( coords, dimensions ) {
 $( 'x1' ).value = coords.x1;
 $( 'y1' ).value = coords.y1;
 $( 'x2' ).value = coords.x2;
 $( 'y2' ).value = coords.y2;
- $( 'width' ).value = dimensions.width;
+$( 'width' ).value = dimensions.width;
 $( 'height' ).value = dimensions.height;
 }
+</script>
+<div id="testWrap">
+
+<img src= {{ url_for('static', filename = "profilePictures/"~profile) }} alt="Test image" id="testImage" width="500" height="333" />
+ </div>
+    <script type="text/javascript" language="javascript">
+
 Event.observe( window, 'load', function() {
         new Cropper.Img(
             'testImage',
