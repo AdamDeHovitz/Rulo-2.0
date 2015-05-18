@@ -3,9 +3,9 @@
 
 {% block body %}
 
-<script type="text/javascript" src="../static/cropper/lib/prototype.js" language="javascript"></script>
-<script type="text/javascript" src="../static/cropper/lib/script/src/scriptaculous.js?load=effects,builder,dragdrop" language="javascript"></script>
-<script type="text/javascript" src="../static/cropper/cropper.js" language="javascript"></script>
+<script type="text/javascript" src="static/cropper/lib/prototype.js" language="javascript"></script>
+<script type="text/javascript" src="static/cropper/lib/script/src/scriptaculous.js?load=effects,builder,dragdrop" language="javascript"></script>
+<script type="text/javascript" src="static/cropper/cropper.js" language="javascript"></script>
 
 
 
@@ -20,18 +20,42 @@
 <br>
 
 {% if change == "pic" %}
-<script src="../static/js/crop.js"></script>
+ <script type="text/javascript" language="javascript">
+function onEndCrop( coords, dimensions ) {
+$( 'x1' ).value = coords.x1;
+$( 'y1' ).value = coords.y1;
+$( 'x2' ).value = coords.x2;
+$( 'y2' ).value = coords.y2;
+$( 'width' ).value = dimensions.width;
+$( 'height' ).value = dimensions.height;
+}
+</script>
 <div id="testWrap">
 
 <img src= {{ url_for('static', filename = "profilePictures/"~profile) }} alt="Test image" id="testImage" width="500" height="333" />
  </div>
+    <script type="text/javascript" language="javascript">
 
+Event.observe( window, 'load', function() {
+        new Cropper.Img(
+            'testImage',
+            {
+                ratioDim: {
+                    x: 220,
+                    y: 220
+                },
+                displayOnInit: true,
+                onEndCrop: onEndCrop
+            }
+        );
+    } );
+</script>
 
 <div id="results">
 		<h2>Crop values:</h2>
 		<div>
 			<label for="x1">x1:</label>
-			<input type="hidden" name="x1" id="x1" size="4" />
+			<input type="text" name="x1" id="x1" size="4" />
 		</div>
 		<div>
 			<label for="y1">y1:</label>
@@ -69,6 +93,7 @@
   <button type="submit" class="pure-button button-secondary
   button-small">Replace with uploaded Picture</button>
 </form>
+
 {% endif %}
 <br><br>
 <form action="/personal_process" method="post" class="pure-form pure-form-aligned">

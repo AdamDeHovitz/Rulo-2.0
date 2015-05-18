@@ -95,15 +95,12 @@ def user():
 @app.route('/proPic', methods=['GET', 'POST'])
 @authenticate
 def changePic():
-  username = session['username']
-  if request.method == "POST":
-    img = request.files['pic']
-    if img and isFileAllowed(img.filename):
-      success = util.addField(session['username'], 'pic', img)
-      if success:
-        return redirect('/personal')
-      else:
-        return redirect('/personal')
+    username = session['username']
+    if request.method == "POST":
+        img = request.files['pic']
+        if img and isFileAllowed(img.filename):
+            success = util.addField(session['username'], 'pic', img)
+        return redirect('/personal/pic')
 
 
 @app.route('/login')

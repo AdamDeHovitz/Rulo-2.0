@@ -6,19 +6,10 @@
 <script type="text/javascript" src="static/cropper/lib/prototype.js" language="javascript"></script>
 <script type="text/javascript" src="static/cropper/lib/script/src/scriptaculous.js?load=effects,builder,dragdrop" language="javascript"></script>
 <script type="text/javascript" src="static/cropper/cropper.js" language="javascript"></script>
-
-
-
-
-
-
-
-
 <section class="blue-grey">
-<h1>Personal Information</h1>
+<h1>Croppingn</h1>
 <br>
 <br>
-
  <script type="text/javascript" language="javascript">
 function onEndCrop( coords, dimensions ) {
 $( 'x1' ).value = coords.x1;
@@ -93,77 +84,5 @@ Event.observe( window, 'load', function() {
   button-small">Replace with uploaded Picture</button>
 </form>
 
-<!--</div>
 
-<div class = "pure-u-1-3 personal">--!>
-<br><br>
-<form action="/personal_process" method="post" class="pure-form pure-form-aligned">
-  <fieldset>
-
-  {% if change == "name" %}
-    <div class="pure-control-group">
-        <label for="fname">New First Name</label>
-        <input id="fname" name="fname" type="text"
-            placeholder="First Name"></div><br>
-    <div class="pure-control-group">
-        <label for="lname">New Last Name</label>
-        <input id="lname" name="lname" type="text"
-            placeholder="Last Name"></div><br>
-
-    <button type="submit" name="submit" value="name"
-	    class="pure-button pure-button-primary">Submit</button> <br>
-  {% else %}
-    <div class="change">
-    Name: {{udict['fname']}} {{udict['lname']}} <br><font size="2"><a class="pure-button"  href="/personal/name">Change</a></font>
-  </div>
-    {% endif %}
-    <br>
-
-
-    {% if change == "email" %}
-    <br> <label for="email"> New Email:</label>
-    <input id="email" name="email" type="text"
-	   placeholder="example@gmail.com"><br>
-    <br>
-    <button type="submit" name="submit" value="email"
-	    class="pure-button pure-button-primary">Submit</button>
-    {% else %}
-    <div class ="change">
-    Email: {{udict['email']}}<br><font size="2"><a class="pure-button pure-button-primary"  href="/personal/email">Change</a></font>
-  </div>
-    {% endif %}
-    <br>
-
-    {% if change == "pw" %}
-    <div class="pure-control-group">
-        <label for="oldpw">Old Password</label>
-        <input id="oldpw" name="oldpw" type="text"
-            placeholder="Old Password"></div><br>
-    <div class="pure-control-group">
-        <label for="ename">New Password</label>
-        <input id="pw" name="pw" type="text"
-            placeholder="New Password"></div><br>
-    <div class="pure-control-group">
-        <label for="cpw">Confirm New Password</label>
-        <input id="cpw" name="cpw" type="text"
-            placeholder="Confirm Password"></div><br>
-
-    
-
-    <button type="submit" name="submit" value="pw"
-	    class="pure-button pure-button-primary">Submit</button>
-    {% else %}
-    <div class ="change">
-    Password: <br><font size="2"><a class="pure-button pure-button-primary"  href="/personal/pw">Change</a></font>
-  </div>
-
-</div>
-
-
-    {% endif %}
-
-
-  </fieldset>
-</form>
-  </section>
 {% endblock %}
