@@ -8,7 +8,6 @@ from werkzeug import secure_filename
 from datetime import datetime
 
 
-
 #---------pic stuff------#
 ALLOWED_FILES = set(['jpg', 'gif', 'png', 'jpeg', 'tif', 'tiff', 'jif', 'jfif', 'fpx'])
 
@@ -101,6 +100,22 @@ def changePic():
         if img and isFileAllowed(img.filename):
             success = util.addField(session['username'], 'pic', img)
         return redirect('/personal/pic')
+    
+@app.route('/editPic', methods=['GET', 'POST'])
+@authenticate
+def editPic():
+    username = session['username']
+    if request.method == "POST":
+        x1 = request.form['x1']
+        x2 = request.form['x2']
+        y1 = request.form['y1']
+        y2 = request.form['y2']
+        picture = util.getPicture (username)
+        image = cv2.imread(picture)
+        cropped = image[y1:y2, x1:x2]
+        cv2.imwrite(picture, cropped)
+        return redirect('/personal')
+    
 
 
 @app.route('/login')

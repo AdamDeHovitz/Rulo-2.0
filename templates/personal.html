@@ -21,42 +21,28 @@
 
 {% if change == "pic" %}
 <script src="../static/js/crop.js"></script>
+<h2>Please Crop</h2>
 <div id="testWrap">
 
-<img src= {{ url_for('static', filename = "profilePictures/"~profile) }} alt="Test image" id="testImage" width="500" height="333" />
+<img src= {{ url_for('static', filename = "profilePictures/"~profile) }} alt="Test image" id="testImage" />
  </div>
 
-
-<div id="results">
-		<h2>Crop values:</h2>
-		<div>
-			<label for="x1">x1:</label>
 			<input type="hidden" name="x1" id="x1" size="4" />
-		</div>
-		<div>
-			<label for="y1">y1:</label>
-			<input type="text" name="y1" id="y1" size="4" />
-		</div>
-		<div>
-			<label for="x2">x2:</label>
-			<input type="text" name="x2" id="x2" size="4" />
-		</div>
-		<div>
-			<label for="y2">y2:</label>
-			<input type="text" name="y2" id="y2" size="4" />
-		</div>
-		<div>
-			<label for="width">width:</label>
-			<input type="text" name="width" id="width" size="4" />
-		</div>
-		<div>
-			<label for="height">height:</label>
-			<input type="text" name="height" id="height" size="4" />
-		</div>
-	</div>
+			<input type="hidden" name="y1" id="y1" size="4" />
+			<input type="hidden" name="x2" id="x2" size="4" />
+			<input type="hidden" name="y2" id="y2" size="4" />
+			<input type="hidden" name="width" id="width" size="4" />
+			<input type="hidden" name="height" id="height"
+			size="4" />
+<form action="/editPic" method="post"" class="pure-form pure-form-aligned">
+  <div class="pure-control-group">
 
+  <br>
+  <button type="submit" class="pure-button button-secondary
+  button-small">Submit cropped image</button>
+</form>
 
-{% else %}
+ {% else %}
 <img class="inside-shadow" src= {{ url_for('static', filename = "profilePictures/"~profile) }} height = "150" width="150"><br><br>
 <div class='pure-g'>
 
