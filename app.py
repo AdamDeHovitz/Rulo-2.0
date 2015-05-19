@@ -6,7 +6,8 @@ import os
 import platform
 from werkzeug import secure_filename
 from datetime import datetime
-
+from PIL import Image
+#import cv2
 
 #---------pic stuff------#
 ALLOWED_FILES = set(['jpg', 'gif', 'png', 'jpeg', 'tif', 'tiff', 'jif', 'jfif', 'fpx'])
@@ -104,16 +105,27 @@ def changePic():
 @app.route('/editPic', methods=['GET', 'POST'])
 @authenticate
 def editPic():
+    print("Here")
     username = session['username']
     if request.method == "POST":
         x1 = request.form['x1']
         x2 = request.form['x2']
         y1 = request.form['y1']
         y2 = request.form['y2']
+        print("Weird stuff")
+        picture = util.getPicture (username)
+        original = Image.open(picture)
+        width, height = original.size   # Get dimensions
+
+        cropped_example = original.crop((x1, y1, x2, y2))
+        cropped_example.show()
+        '''
         picture = util.getPicture (username)
         image = cv2.imread(picture)
         cropped = image[y1:y2, x1:x2]
         cv2.imwrite(picture, cropped)
+        '''
+        print("Complete")
         return redirect('/personal')
     
 
