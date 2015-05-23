@@ -7,8 +7,7 @@ import platform
 #import Image
 from werkzeug import secure_filename
 from datetime import datetime
-
-
+from PIL import Image
 
 #---------pic stuff------#
 ALLOWED_FILES = set(['jpg', 'gif', 'png', 'jpeg', 'tif', 'tiff', 'jif', 'jfif', 'fpx'])
@@ -65,7 +64,6 @@ def home():
 
 @app.route('/user', methods=['POST', 'GET'])
 def user():
-    #print("user!");
     if request.method=="POST":
         newuser = {}
         newuser['uname'] = request.form['uname']
@@ -102,10 +100,34 @@ def changePic():
     img = request.files['pic']
     if img and isFileAllowed(img.filename):
       success = util.addField(session['username'], 'pic', img)
-      if success:
+    return redirect('/personal/pic')
+@app.route('/editPic', methods=['GET', 'POST'])
+@authenticate
+def editPic():
+    print("Here")
+    username = session['username']
+    if request.method == "POST":
+        x1 = request.form['x1']
+        x2 = request.form['x2']
+        y1 = request.form['y1']
+        y2 = request.form['y2']
+        print("Weird stuff")
+        picture = util.getPicture (username)
+        original = Image.open(picture)
+        width, height = original.size   # Get dimensions
+
+        cropped_example = original.crop((x1, y1, x2, y2))
+        cropped_example.show()
+        '''
+        picture = util.getPicture (username)
+        image = cv2.imread(picture)
+        cropped = image[y1:y2, x1:x2]
+        cv2.imwrite(picture, cropped)
+        '''
+        print("Complete")
         return redirect('/personal')
-      else:
-        return redirect('/personal')
+
+
 
 
 @app.route('/login')
@@ -205,12 +227,8 @@ def process():
         edict['price'] = request.form["price"]
         edict['long'] = request.form["long"] #MAKE ALL 'LON'
         edict['lat'] = request.form["lat"]
-        print('looking for location')
         edict['location'] = request.form['loc']
-        print('got location')
-        print('looking for address')
         edict['address'] = request.form['address']
-        print('got address')
         if util.checkEvent(edict) != "":
             flash(util.checkEvent(edict))
             return redirect('/create_events')
@@ -359,8 +377,8 @@ def about():
     if 'username' in session:
         username = escape(session['username'])
         udict = util.getUser(username)
-    return render_template('about.html', udict=udict) 
-  
+    return render_template('about.html', udict=udict)
+
 
 @app.route('/_add_numbers')
 def add_numbers():
@@ -374,8 +392,8 @@ def ajax():
     if 'username' in session:
         username = escape(session['username'])
         udict = util.getUser(username)
-    return render_template('ajaxTest.html', udict=udict) 
-  
+    return render_template('ajaxTest.html', udict=udict)
+
 
 
 if __name__ == '__main__':
