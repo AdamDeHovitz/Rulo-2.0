@@ -2,12 +2,48 @@
 
 
 {% block body %}
+
+<script type="text/javascript" src="../static/cropper/lib/prototype.js" language="javascript"></script>
+<script type="text/javascript" src="../static/cropper/lib/script/src/scriptaculous.js?load=effects,builder,dragdrop" language="javascript"></script>
+<script type="text/javascript" src="../static/cropper/cropper.js" language="javascript"></script>
+
+
+
+
+
+
+
+
 <section class="blue-grey">
 <h1>Personal Information</h1>
 <br>
 <br>
-<!-- <img src="../static/profilePictures/ewokPing.jpg" height="50" width="50"> -->
-<!-- <img id= src="{{ profile }}" height = "75" width="75"> -->
+
+{% if change == "pic" %}
+<script src="../static/js/crop.js"></script>
+<form action="/editPic" method="post"" class="pure-form pure-form-aligned">
+<h2>Please Crop</h2>
+<div id="testWrap">
+
+<img src= {{ url_for('static', filename = "profilePictures/"~profile) }} alt="Test image" id="testImage" />
+ </div>
+
+			<input type="hidden" name="x1" id="x1" size="4" />
+			<input type="hidden" name="y1" id="y1" size="4" />
+			<input type="hidden" name="x2" id="x2" size="4" />
+			<input type="hidden" name="y2" id="y2" size="4" />
+			<input type="hidden" name="width" id="width" size="4" />
+			<input type="hidden" name="height" id="height"
+			size="4" />
+
+  <div class="pure-control-group">
+
+  <br>
+  <button type="submit" class="pure-button button-secondary
+  button-small">Submit cropped image</button>
+</form>
+
+ {% else %}
 <img class="inside-shadow" src= {{ url_for('static', filename = "profilePictures/"~profile) }} height = "150" width="150"><br><br>
 <div class='pure-g'>
 
@@ -15,15 +51,12 @@
 
 <form action="/proPic" method="post" enctype="multipart/form-data" class="pure-form pure-form-aligned">
   <div class="pure-control-group">
-    <!-- <label for="pic">Picture</label> -->
+
     <input id="pic" name="pic"  type="file" accept="image/*"></div><br>
   <button type="submit" class="pure-button button-secondary
   button-small">Replace with uploaded Picture</button>
 </form>
-
-<!--</div>
-
-<div class = "pure-u-1-3 personal">--!>
+{% endif %}
 <br><br>
 <form action="/personal_process" method="post" class="pure-form pure-form-aligned">
   <fieldset>

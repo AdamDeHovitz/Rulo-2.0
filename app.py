@@ -4,10 +4,10 @@ import util #util.py
 from functools import wraps
 import os
 import platform
-#import Image
 from werkzeug import secure_filename
 from datetime import datetime
 from PIL import Image
+#import cv2
 
 #---------pic stuff------#
 ALLOWED_FILES = set(['jpg', 'gif', 'png', 'jpeg', 'tif', 'tiff', 'jif', 'jfif', 'fpx'])
@@ -101,6 +101,7 @@ def changePic():
     if img and isFileAllowed(img.filename):
       success = util.addField(session['username'], 'pic', img)
     return redirect('/personal/pic')
+
 @app.route('/editPic', methods=['GET', 'POST'])
 @authenticate
 def editPic():
@@ -126,6 +127,7 @@ def editPic():
         '''
         print("Complete")
         return redirect('/personal')
+
 
 
 
@@ -233,13 +235,8 @@ def process():
             flash(util.checkEvent(edict))
             return redirect('/create_events')
         newevent = util.createEvent(edict)
-        print newevent
-        #util.addEventPerson(username, newevent)
-        #util.addHostPerson(newevent, username)
         util.updateUField(username, 'hevents', newevent)
         return redirect('/events')
-    #return render_template('eventCreated.html', udict=util.getUser(username), edict=edict)
-
 
 @app.route('/events', methods=['GET','POST'])
 @authenticate
@@ -251,20 +248,16 @@ def events():
     return render_template('events.html', udict=udict, elist=elist)
 
 
-@app.route('/joinevent', methods=['GET','POST']) #does order matter?
+@app.route('/joinevent', methods=['GET','POST'])
 @authenticate
 def joinevent():
     username = escape(session['username'])
     udict = util.getUser(username)
-    #elist = util.listEvents(); # do we need this?
     elist = util.validEvents(username)
     if request.method=="POST":
         event = request.form["submit"] # objectid
-        #print event
         util.updateEField(event, 'requests', username)
-        #util.updateUField(username, 'requests', event) #event doesn't include objectid
         util.addEventUserList(username, 'revents', event)
-        #util.addEventPerson(event, username)
         return render_template('events.html', udict=udict, elist=elist,
                                name = util.getEventAttribute(event, "ename"))
 
@@ -323,7 +316,6 @@ def addreview(uname = None):
     review['user'] = username
     review['rating'] = int(request.form["rating"])
     review['comment'] = request.form["comment"]
-    #util.updateUField(uname, 'reviews', review)
     util.updateReview(uname, review)
     return redirect('/user/'+ uname)
 
@@ -341,8 +333,6 @@ def event_page(id = None):
     event = util.getEvent(id)
     return render_template('event_page.html', udict = udict, event = event)
 
-
-
 @authenticate
 @app.route('/event_page/<eventid>/<uname>', methods=['GET', 'POST'])
 def confirme(eventid = None, uname = None):
@@ -356,7 +346,6 @@ def confirm_event(eventid = None):
     #util.confirmNotification(username, eventid)
     util.removeUField(username, 'notifications', eventid)
     return redirect('/event_page/'+ eventid )
-
 
 @authenticate
 @app.route('/newmsg/<eventid>', methods=['GET', 'POST'])
