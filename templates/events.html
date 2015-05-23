@@ -9,7 +9,12 @@
 <font color="green">You have requested to join {{name}}</font><br>
 {% endif %}
 
+
+{% if elist %}
 <h2>Check out your local Events </h2>
+{% else %}
+<h2> There are no new events in your area </h2>
+{% endif %}
 
 <form action="/joinevent" method="post" class="pure-form pure-form-aligned">
 
