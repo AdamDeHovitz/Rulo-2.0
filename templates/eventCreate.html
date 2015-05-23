@@ -10,11 +10,11 @@
     <div class="pure-control-group">
       <label for="ename">Event Name</label>
       <input id="ename" name="ename" type="text"
-	     placeholder="Let's get Turkeys!"></div><br>
+          autocorrect="off" autocapitalize="words"
+          placeholder="Let's get Turkeys!"></div><br>
     <div class="pure-control-group">
       <label for="numb">Max People Needed</label>
       <input id="numb" name="numb" type="number" placeholder="4"></div><br>
-
     <div class="pure-control-group">
       <label for="total">Total Price</label>
       <input id="total" name="total" type="number" placeholder="3.00"></div><br>
@@ -30,29 +30,33 @@
     <input id="dist" name="dist" type="hidden" value="">
     <input id="address" name="address" type="hidden" value="">
 
-
-    <button type="submit" onclick="action()"  class="pure-button pure-button-primary">Go!</button>
-    <input name="long" value=latitude id="long" type="hidden">
-    <input name="lat" value=longitude id="lat" type="hidden">
-
-  </fieldset>
-</form></section>
-<br><br><br>
-
-<div>
-    Location: <input type="text" name="place1" id="place1">
-        <button type="submit" name="mark-address" id="mark-address">Mark</button> <br>
-            <button type="submit" name="current" id="current">Use Current Location</button> <br>
+    <div>
+        Location: <input type="text" name="place1" id="place1">
+            <button name="mark-address" id="mark-address">Mark</button> <br>
+            <button name="current" id="current">Use Current Location</button> <br>
             <input type="radio" name="mode" value="DRIVING"> Driving <br>
             <input type="radio" name="mode" value="WALKING"> Walking <br>
             <input type="radio" name="mode" value="BICYCLING"> Bicycling <br>
-</div>
+    </div>
 <div id="map-canvas"> </div>
 <div id="new-div">
     Markers:
     <ol id="list">
     </ol>
 </div>
+
+
+
+    <button type="submit" onclick="action()"  class="pure-button pure-button-primary" id="go">Go!</button>
+    <input name="long" value=latitude id="long" type="hidden">
+    <input name="lat" value=longitude id="lat" type="hidden">
+
+  </fieldset>
+</form>
+
+<br>
+
+</section>
 
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY"></script>
 

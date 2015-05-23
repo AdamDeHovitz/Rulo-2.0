@@ -21,17 +21,21 @@
       <link href="../static/fonts/stranger.css" rel="stylesheet">
     {% endif %}
     <style type="text/css">
-        html, body, 
         #map-canvas { height: 400px; width: 500px; margin: 10px; padding: 0;}
       .flashes {color: red; text-indent: 50px}
     </style>
     
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY">
-        </script>
+    </script>
   </head>
 
   <div id="topMenu" class="pure-menu pure-menu-open pure-menu-horizontal one-edge-shadow">
+
+    <script type="text/template" id="menu-item">
+	 <a href="/<%- href -%>"> <%- name %> </a>
+    </script>
+
 
     {% if username or udict['uname'] %}
     <li><a href="/about"><img src="../static/RuloPic.png" width="30" height="30"></a></li>
@@ -41,6 +45,8 @@
     <li><a href="/personal">Personal</a></li>
     <li><a href="/logout" style="align:right">Logout</a></li>
      </div>
+
+
 
     {% else %}
     <li><a href="/about"><img src="../static/RuloPic.png" width="50" height="50"></a></li>
@@ -109,16 +115,13 @@
     <input id="TheDistance" name="dist" type="hidden" value="">
 
 
-<<<<<<< HEAD
-    
     <script type="text/javascript" src="../static/js/maps.js"></script>
-=======
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY"></script>
 
 
->>>>>>> 29afb95889d8fcc556199267bf9388214876831c
-
     {% endblock %}
+    
 
 
   </body>
