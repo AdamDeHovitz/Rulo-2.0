@@ -6,7 +6,7 @@ import os
 import platform
 from werkzeug import secure_filename
 from datetime import datetime
-from PIL import Image
+#from PIL import Image
 #import cv2
 
 #---------pic stuff------#

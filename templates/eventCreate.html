@@ -4,9 +4,9 @@
 <section class="blue-grey">
 <h1>{{udict['fname']}}, Create an event! </h1>
 
-<form action="/create_event_process" method="post" class="pure-form pure-form-aligned">
-
-  <fieldset>
+<!-- <form action="/create_event_process" method="post" class="pure-form pure-form-aligned">
+  -->
+<div class="pure-form pure-form-aligned formlike">
     <div class="pure-control-group">
       <label for="ename">Event Name</label>
       <input id="ename" name="ename" type="text"
@@ -22,43 +22,47 @@
       <label for="numb">Price Per Person</label>
       <input id="price" name="price" type="number" placeholder="1.00"></div><br>
     <div class="pure-control-group">
-      <label for="desc">Description</label><textarea name="desc" id="desc" placeholder="What is your event?" cols="40" rows="5"></textarea></div><br>
+      <label for="desc">Description</label>
+      <textarea name="desc" id="desc" placeholder="What is your event?" cols="40"
+                rows="5"></textarea></div><br>
 
+    <div class="pure-control-group">
+      <label for="loc">Location</label>
+      <input id="place1" name="place1" type="text" placeholder="345 Chambers St. NY">
+      </div>
+      Place a marker to confirm address.
+      <button name="mark-address" id="mark-address">Place Marker</button> <br>
+      <button name="current" id="current">Use Current Location</button> <br>
+      Select a Mode of Travel to view travel time and distance: <br>
+      <input type="radio" name="mode" value="DRIVING"> Driving <br>
+      <input type="radio" name="mode" value="WALKING"> Walking <br>
+      <input type="radio" name="mode" value="BICYCLING"> Bicycling <br>
+      <input type="radio" name="mode" value="TRANSIT"> Transit <br>
 
-    <input id="loc" name="loc" type="hidden" value="">
-    <input id="dist" name="dist" type="hidden" value="">
-    <input id="address" name="address" type="hidden" value="">
+      <div id="map-canvas"> </div>
 
-    <div>
-        Location: <input type="text" name="place1" id="place1">
-            <button name="mark-address" id="mark-address">Mark</button> <br>
-            <button name="current" id="current">Use Current Location</button> <br>
-            <input type="radio" name="mode" value="DRIVING"> Driving <br>
-            <input type="radio" name="mode" value="WALKING"> Walking <br>
-            <input type="radio" name="mode" value="BICYCLING"> Bicycling <br>
-    </div>
-<div id="map-canvas"> </div>
-<div id="new-div">
-    Markers:
-    <ol id="list">
-    </ol>
+      <div id="route-info">
+
+      </div>
+
+  <input id="loc" name="loc" type="hidden" value="">
+  <input id="dist" name="dist" type="hidden" value="">
+  <input id="address" name="address" type="hidden" value="">
+
 </div>
-
-
 
     <button type="submit" onclick="action()"  class="pure-button pure-button-primary" id="go">Go!</button>
     <input name="long" value=latitude id="long" type="hidden">
     <input name="lat" value=longitude id="lat" type="hidden">
 
-  </fieldset>
-</form>
+
+<!-- </form> -->
 
 <br>
 
 </section>
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2ie2fjoFfkQMGGPZotTg1rxsEcaYuDHY"></script>
 
-<script src="../static/GPSEvent.js"></script>-->
+<script src="../static/js/createevents.js"></script>
 
 {% endblock %}
