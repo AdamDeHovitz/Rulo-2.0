@@ -35,17 +35,14 @@
       Place a marker to confirm address.
       <button name="mark-address" id="mark-address">Place Marker</button> <br>
       <button name="current" id="current">Use Current Location</button> <br>
-      Select a Mode of Travel to view travel time and distance: <br>
+      Select a Mode of Travel to view travel time and distance (defaults to driving): <br>
       <input type="radio" name="mode" value="DRIVING"> Driving <br>
       <input type="radio" name="mode" value="WALKING"> Walking <br>
       <input type="radio" name="mode" value="BICYCLING"> Bicycling <br>
       <input type="radio" name="mode" value="TRANSIT"> Transit <br>
 
+      <div id="route-info"> </div>
       <div id="map-canvas"> </div>
-
-      <div id="route-info">
-
-      </div>
 
   <input id="loc" name="loc" type="hidden" value="">
   <input id="dist" name="dist" type="hidden" value="">

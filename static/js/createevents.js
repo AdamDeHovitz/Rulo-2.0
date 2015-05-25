@@ -39,6 +39,7 @@ var placeMarker = function(){
 	     place1.value = "";
 	     geocoder.geocode( { 'address': a}, function(results, status) {
 	     if (status == google.maps.GeocoderStatus.OK) {
+
           if (data.marker != null) { data.marker.setMap(null); }
 		      var marker = new google.maps.Marker({
 		           map: map,
@@ -46,10 +47,12 @@ var placeMarker = function(){
 		           animation: defaultMarker.animation,
 		           draggable: defaultMarker.draggable
 		       });
-           data.latlong = marker.getPosition();
-        	 map.panTo(marker.getPosition());
+           var m = marker.getPosition();
+           displayRouteInfo(m);
+           data.latlong = m;
+        	 map.panTo(m);
         	 data.marker = marker;
-		//display Distance/Time
+
 
 	    } else {
 		      alert('Geocode was not successful for the following reason: '
@@ -107,6 +110,37 @@ var markCurrent = function(){
     });
 }*/
 
+var displayRouteInfo = function(dest){
+    if ("geolocation" in navigator) {
+       browserSupportFlag = true;
+	     navigator.geolocation.getCurrentPosition(function(position) {
+	         var initialLocation = new google.maps.LatLng(position.coords.latitude,
+              position.coords.longitude);
+           var mode = "";
+           var radios = document.getElementsByName("mode");
+           for (var i = 0; i < radios.length; i++){
+      	      if (radios[i].checked){ mode = radios[i].value; }
+           };
+           if (mode == "") { mode = "DRIVING"};
+          service.getDistanceMatrix({
+                   origins: [initialLocation],
+              		 destinations: [dest],
+              		 travelMode: mode,
+              		 unitSystem: google.maps.UnitSystem.IMPERIAL,
+            }, callback);
+          	    // after successful call to API, calls function callback
+          function callback(response, status) {
+             var element = response.rows[0].elements[0];
+             var distance = element.distance.text;
+             var time = element.duration.text;
+             var div = document.getElementById("route-info");
+             div.innerHTML = "Distance: "+distance+"<br>Time: "+time;
+          };
+       });
+
+    }
+}
+
 
 
 var service = new google.maps.DistanceMatrixService();
@@ -121,17 +155,17 @@ var route = function(origin, destination, mode){
        distance : "",
        calculate : function(){
            service.getDistanceMatrix({
-           origins: [this.origin],
-      		 destinations: [this.destination],
-      		 travelMode: this.mode,
-      		 unitSystem: google.maps.UnitSystem.IMPERIAL,
-       }, callback);
+               origins: [this.origin],
+          		 destinations: [this.destination],
+          		 travelMode: this.mode,
+          		 unitSystem: google.maps.UnitSystem.IMPERIAL,
+           }, callback);
       	    // after successful call to API, calls function callback
-       function callback(response, status) {
-      		var element = response.rows[0].elements[0];
-      		this.distance = element.distance.text;
-      		this.time = element.duration.text;
-       }
+            function callback(response, status) {
+      		      var element = response.rows[0].elements[0];
+      		      this.distance = element.distance.text;
+      		      this.time = element.duration.text;
+            };
        },
        getDistance : function(){ return distance; },
     	 getTime : function(){ return time; }
@@ -160,17 +194,17 @@ var getRoute = function(){
 
 var newEvent = function(){
     var e = {};
-    //things: ename, desc, numb, price
     e.ename = document.getElementById("ename").value;
     e.desc = document.getElementById("desc").value;
     e.numb = document.getElementById("numb").value;
     e.price = document.getElementById("price").value;
     e.latlong = data.latlong;
+
     if (data.latlong == data.userCurrent){
        e.userlocs = [];
        //e.userlocs.append({user:<username>, loc: data.userCurrent})
     }
-
+    //check to make sure none are blank
 }
 
 
