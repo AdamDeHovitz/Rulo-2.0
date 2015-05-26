@@ -8,8 +8,10 @@
 <section class="blue-grey">
 <h1> {{pdict['fname']}} {{pdict['lname']}} </h1>
 <img class= "inside-shadow" src= {{ url_for('static', filename = "profilePictures/"~profile) }} height = "150" width="150">
-<br><br>
-<br><br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 
@@ -39,7 +41,8 @@ Rate your experience with {{pdict['fname']}}: <br>
   </span>
 
   <div class="pure-control-group">
-    <label for="comment">Comment</label><textarea name="comment" id="comment" placeholder="Leave a comment." cols="40" rows="5"></textarea></div><br>
+    <label for="comment">Comment</label><textarea name="comment" id="comment" placeholder="Leave a comment." cols="40" rows="5"></textarea></div>
+  <br>
   <button type="submit" onclick="action()" class="pure-button pure-button-primary">Submit</button>
 </form>
 
