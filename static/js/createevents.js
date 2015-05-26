@@ -5,6 +5,7 @@ var geocoder = new google.maps.Geocoder();
 var data = {}; //keep track of global data (location, markers)
 //things: userCurrent, marker, latlong
 
+var service = new google.maps.DistanceMatrixService();
 
 var defaultMarker = {
     animation: google.maps.Animation.DROP,
@@ -143,7 +144,6 @@ var displayRouteInfo = function(dest){
 
 
 
-var service = new google.maps.DistanceMatrixService();
 
 
 var route = function(origin, destination, mode){
@@ -198,7 +198,7 @@ var newEvent = function(){
     e.desc = document.getElementById("desc").value;
     e.numb = document.getElementById("numb").value;
     e.price = document.getElementById("price").value;
-    e.latlong = data.latlong;
+    e.latlong = data.latlong.lat()+","+data.latlong.lng();
 
     if (data.latlong == data.userCurrent){
        e.userlocs = [];
