@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=TXK971LR3Bw&feature=youtu.be
 Install flask, MongoDB, bson.objectid, gunicorn, and datetime before running app.py
 
 ##Areas for improvement
-* Google maps functionality will need improvement. It should help you get to your location, and in the future perhaps even show you your group mates
-* Events can be made more flexible to allow for future scheduling. The app is currently optomized for "I'm in Costco and want to buy this now" type circumstances
-* Mobile optomization, and eventually maybe app deployment, are a critical next step in Rulo's development
-* Increasing notifications to notify of more things and to include text or email 
+* GPS
+* Pictures
+* Expiration
+* URL
