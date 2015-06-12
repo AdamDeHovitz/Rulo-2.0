@@ -12,7 +12,7 @@ With a light and sleek design, Rulo will let you enjoy saving those grocery doll
 * [Adam DeHovitz](https://github.com/adamdehovitz) Back/Front-End Design, component interaction, and database usage
 * [Sophie Gershon](https://github.com/sophgersh) Database usage, events and user code, and python coding
 * [Deanna Taylor](https://github.com/deannataylor) Marionette usage, Javascript and HTML coding, styling, and GPS
-* [Alex Zilbersher](https://github.com/zilby) 
+* [Alex Zilbersher](https://github.com/zilby) Droplet integration and setup.
 
 The Team in retirement
 * [Benedict Bolton](https://github.com/benedict-bolton) CSS Styling, GPS javascript, Images, and component interaction
