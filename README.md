@@ -19,7 +19,7 @@ The Team in retirement
 
 
 ##The Application
-Got to <url>http://104.236.40.185/</url> For the Application
+Got to <url>http://rulo.jaaax.com/</url> For the Application
 
 ##The Video
 https://www.youtube.com/watch?v=TXK971LR3Bw&feature=youtu.be
